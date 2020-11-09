@@ -1,0 +1,65 @@
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{ hugo.Generator }}
+
+    <!-- Icons -->
+    <!-- TODO: Refactor -->
+    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    
+    <!-- TODO: Autogenerate and re-add later -->
+    <!-- <link rel="manifest" href="manifest.json"> -->
+    <!-- TODO: Needed? -->
+    <!-- <link rel="canonical" href="#"> -->
+    
+    {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
+    <link href="{{"css/bootstrap-4.3.1.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    <link href="{{"css/fontawesome-all.min.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    <link href="{{"css/theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
+    
+    <script src="{{"js/jquery-3.5.1.min.js"| relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}"></script>
+
+    <!-- TODO: Needed? -->
+    <!-- <meta name="theme-color" content="%23ffffff"> -->
+
+    <!-- Title -->
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+
+    <meta property="og:title" content="{{ .Title }}"/>
+    <meta property="og:site_name" content="{{ .Site.Title }}"/>
+    
+        <meta property="og:url" content="{{ .Permalink }}"/>
+    
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:title" content="{{ .Title }}"/>
+    <meta name="twitter:site" content="{{ .Params.twitter }}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+
+    <!-- Image -->
+    <!-- Probably not needed  -->
+        <!-- <meta property="og:image" content="images/page/og-hugo.jpg"/>
+        <meta name="twitter:image" content="images/page/og-hugo.jpg"/> -->
+    
+
+    <!-- Description -->
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    <meta name="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+
+{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}    
+
+    <base href="/">
+
+</head>
