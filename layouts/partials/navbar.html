@@ -17,32 +17,34 @@
 {{- $currentNode := .currentnode }}
  {{- with .sect}}
   {{- if and .IsSection (or (not .Params.hidden) $.showhidden)}}
-    {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
+    {{- $numberOfPages := (len .Pages) }}
+    {{- $numberOfSections := (len .Sections) }}
     {{- safeHTML .Params.head}}
-    <li data-nav-id="{{.Permalink}}" class="dd-item
+    <li data-nav-id="{{.Permalink}}" class="c-py-2 dd-item
         {{- if .IsAncestor $currentNode}} parent{{end}}
         {{- if eq .Permalink $currentNode.Permalink}} active{{end}}
         {{- if .Params.alwaysopen}} alwaysopen{{end -}}
         {{- if ne $numberOfPages 0 }} haschildren{{end}}
+        {{- if gt $numberOfSections 0 }} topsection{{end}}
         ">
-      <div>
-      <a href="{{ .RelPermalink}}">
-          
+        <!-- collapsed font-size-22 font-weight-bold d-inline-block w-100 position-relative -->
+      <a href="{{ .RelPermalink}}" class="font-size-15 ">
         {{safeHTML .Params.Pre}}{{or .Params.menuTitle .LinkTitle .Title}}{{safeHTML .Params.Post}}
-      </a>
-        
         {{- if ne $numberOfPages 0 }}
-          {{- if or (.IsAncestor $currentNode) (.Params.alwaysopen) }}
-            <i class="fa fa-angle-down fa-lg category-icon"></i>
-          {{- else -}}
-            <i class="fa fa-angle-right fa-lg category-icon"></i>
-          {{- end}}
+        {{- if or (.IsAncestor $currentNode) (.Params.alwaysopen) }}
+          <i class="fa fa-angle-down fa-lg category-icon"></i>
+        {{- else -}}
+          <i class="fa fa-angle-right fa-lg category-icon"></i>
         {{- end}}
+      {{- end}}
+      </a>
+
 
         {{- if $showvisitedlinks}}<i class="fa fa-circle-thin read-icon"></i>{{end}}
-      </div>
+
       {{- if ne $numberOfPages 0 }}
-        <ul>
+        <ul class="card-body c-px-7 c-pt-2 c-pb-5
+        ">
           {{- .Scratch.Set "pages" .Pages }}
           {{- if .Sections}}
           {{- .Scratch.Set "pages" (.Pages | union .Sections) }}
@@ -52,14 +54,14 @@
           {{- range $pages.ByTitle }}
             {{- if and .Params.hidden (not $.showhidden) }}
             {{- else}}
-            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
             {{- end}}
           {{- end}}
         {{- else}}
           {{- range $pages.ByWeight }}
             {{- if and .Params.hidden (not $.showhidden) }}
             {{- else}}
-            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
             {{- end}}
           {{- end}}
         {{- end}}
@@ -67,16 +69,15 @@
       {{- end}}
     </li>
   {{- else}}
-    {{- if not .Params.Hidden }}
-      <li data-nav-id="{{.Permalink}}" class="dd-item
+    {{- if not .Params.Hidden }}      
+
+      <li data-nav-id="{{.Permalink}}" class="hugo-sidebar__body-link c-mt-3 dd-item
      {{- if eq .Permalink $currentNode.Permalink}} active{{end -}}
       ">
-        <div>
-          <a href="{{ .RelPermalink}}">
+        <a href="{{ .RelPermalink}}" class="font-size-15">
             {{safeHTML .Params.Pre}}{{.LinkTitle}}{{safeHTML .Params.Post}}
           </a>
           {{- if $showvisitedlinks}}<i class="fa fa-circle-thin read-icon"></i>{{end}}
-        </div>
     </li>
      {{- end}}
   {{- end}}

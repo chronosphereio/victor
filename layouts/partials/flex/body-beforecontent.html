@@ -1,0 +1,101 @@
+<header id="screen-reader-shortcut-header" class="main-header js-main-header fixed-top w-100 main-header--hugo main-header--background">
+
+  <div class="d-none d-xl-block">
+    <nav class="navbar navbar-hugo navbar-expand-xl navbar-light bg-light c-px-0">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-between w-100">
+          <div class="col-lg-3 col-xxl-2">
+            <div class="navbar-hugo__logo d-flex align-items-center">
+              <a class="navbar-brand c-ml-3" href="/page_home/">
+                {{ partial "logo.html" . }}
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-9 col-xxl-10 d-flex c-pr-0">
+            {{- if not .Site.Params.disableSearch}}
+             <!-- TODO: What was this T? -->
+                <!-- <input class="form-control navbar-hugo__search" data-search-input id="search-by" type="text" placeholder="{{T "Search-placeholder"}}"> -->
+                <input class="form-control navbar-hugo__search" data-search-input id="search-by" type="text" placeholder="Search..." aria-label="Search for...">
+              <script type="text/javascript" src="{{"js/lunr.min.js" | relURL}}"></script>
+              <script type="text/javascript" src="{{"js/auto-complete.js" | relURL}}"></script>
+              <link href="{{"css/auto-complete.css" | relURL}}" rel="stylesheet">
+              <script type="text/javascript">
+                {{ if .Site.IsMultiLingual }}
+                var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
+                {{ else }}
+                var baseurl = "{{.Site.BaseURL}}";
+                {{ end }}
+              </script>
+              <script type="text/javascript" src="{{"js/search.js" | relURL}}"></script>
+            {{- end}}
+
+            <a target="_self" rel="noopener" href="/"
+              class="navbar-hugo__cta crunch-button crunch-button__full-background crunch-button__full-background--gradient-color 
+              crunch-button__full-background--arrow-right crunch-button__full-background--large text-white ml-auto c-mr-4">
+              Getting Started
+            </a>
+            {{/*  TODO: Parameterise  */}}
+            <div class="navbar-socials order-2 order-lg-3">
+              <a href="" class="navbar-socials__logo-box bg-primary c-mr-2">
+                <img src="../images/slack_logo-light.svg" class="navbar-socials__logo">
+              </a>
+              <a href="" class="navbar-socials__logo-box bg-primary c-ml-2">
+                <img src="../images/github_logo-light.svg" class="navbar-socials__logo">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+
+</header>
+<div class="main-content page-hugo">
+
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-lg-3 col-xxl-2 hugo-sidebar bg-blue-very-light c-p-0">
+    <ul class="menu">
+      {{- if not .Site.Params.disableHomeIcon}}
+      <li data-nav-id="{{"/" | relLangURL}}" class="dd-item">
+        <a href="{{"/" | relLangURL}}">
+          <i class="fa fa-fw fa-home"></i>
+        </a>
+      </li>
+      {{- end}}
+
+      {{- partial "menu.html" . }}
+
+    </ul>
+    {{- with .Site.Menus.shortcuts}}
+    <nav class="shortcuts">
+      <ul class="c-px-5 c-py-2">
+      {{- range sort . "Weight"}}
+      <li class="" role="">
+        <a href="{{.URL}}" {{if eq $.Site.Params.menushortcutsnewtab true}}target="_blank" {{end}} rel="noopener">
+          {{safeHTML .Name}}
+        </a>
+      </li>
+      {{- end}}
+    </ul>
+    </nav>
+    {{- end}}
+    {{- partial "language-selector.html" . }}
+    <section>
+      {{- partial "menu-footer.html" . }}
+    </section>
+  </div>
+  <div class="page col-lg-9 col-xxl-10 hugo-content c-px-md-10 c-pt-5 c-pb-10">
+
+    <div class="nav-select">
+      <center>Navigation :
+        <select onchange="javascript:location.href = this.value;">
+          {{partial "flex/selectnavigation.html" .}}
+        </select>
+      </center>
+    </div>
+
+
+    {{if not .IsHome}}<h1>{{.Title}}</h1>{{end}}

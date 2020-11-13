@@ -22,3 +22,14 @@ jQuery.extend({
         return 0;
     }
 });
+
+// jQuery(document).ready(function() {
+
+//     jQuery('.menu .category-icon').on('click', function() {
+//         console.log("test");
+//         $( this ).toggleClass("fa-angle-down fa-angle-right") ;
+//         console.log($( this ).parent().children('ul'));
+//         $( this ).parent().children('ul').toggle() ;
+//         return false;
+//     });
+// });
