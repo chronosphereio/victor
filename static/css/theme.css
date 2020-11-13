@@ -9980,7 +9980,7 @@ html {
 }
 
 /* TODO: remove extraneous class? */
-.c-mt-4, p {
+.c-mt-4, p, .highlight {
     margin-top: .75rem
 }
 
@@ -11119,7 +11119,7 @@ html {
         margin-top: .6rem
     }
     /* TODO: remove extraneous class? */
-    .c-mt-4, p {
+    .c-mt-4, p, .highlight {
         margin-top: .9rem
     }
     .c-mt-5 {
@@ -12462,7 +12462,7 @@ html {
         margin-top: .7rem
     }
     /* TODO: remove extraneous class? */
-    .c-mt-4, p {
+    .c-mt-4, p, .highlight {
         margin-top: 1.05rem
     }
     .c-mt-5 {
@@ -14215,7 +14215,7 @@ html {
         margin-top: .8rem
     }
     /* TODO: remove extraneous class? */
-    .c-mt-4, p {
+    .c-mt-4, p, .highlight {
         margin-top: 1.2rem
     }
     .c-mt-5 {
@@ -16386,7 +16386,7 @@ html {
         margin-top: .9rem
     }
     /* TODO: remove extraneous class? */
-    .c-mt-4, p {
+    .c-mt-4, p, .highlight {
         margin-top: 1.35rem
     }
     .c-mt-5 {
@@ -18967,7 +18967,7 @@ html {
         margin-top: 1rem
     }
     /* TODO: remove extraneous class? */
-    .c-mt-4, p {
+    .c-mt-4, p, .highlight {
         margin-top: 1.5rem
     }
     .c-mt-5 {
@@ -24620,7 +24620,7 @@ iframe.wait-autoplay {
 
 .main-header {
     z-index: 10;
-    background-color: transparent;
+    background-color: white;
     transition: background-color 0.2s eas-in-out
 }
 
