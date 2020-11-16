@@ -9445,7 +9445,7 @@ a {
     vertical-align: baseline;
     background: transparent;
     text-decoration: none;
-    color: #E36E2A;
+    color: currentColor;
     transition: color .2s ease-in-out, opacity .2s ease-in-out, background-size .2s ease-in-out, background .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out, width .2s ease-in-out, height .2s ease-in-out
 }
 
@@ -25907,6 +25907,10 @@ background-color: #EFF9FC;
 /* .hugo-content__head {
     font-family: "Cabin", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
 } */
+
+.hugo-content a {
+    color: #E36E2A;
+}
 
 .hugo-content__head a {
     color: #E36E2A
