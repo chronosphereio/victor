@@ -9444,13 +9444,9 @@ a {
     font-size: 100%;
     vertical-align: baseline;
     background: transparent;
-    text-decoration: none;
+    text-decoration: underline;
     color: currentColor;
     transition: color .2s ease-in-out, opacity .2s ease-in-out, background-size .2s ease-in-out, background .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out, width .2s ease-in-out, height .2s ease-in-out
-}
-
-a:-webkit-any-link {
-    text-decoration: none
 }
 
 a:hover, a:focus {
