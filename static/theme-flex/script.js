@@ -1,7 +1,13 @@
 jQuery(document).ready(function() {
-    jQuery('.menu .category-icon').on('click', function() {
-        $( this ).toggleClass("fa-angle-down fa-angle-right") ;
-        $( this ).parent().parent().children('ul').toggle() ;
+    // TODO: Temporary fix
+
+    jQuery('.menu .dd-item.haschildren > a').on('click', function() {
+        console.log($( this ).children('a'));
+        $( this ).parent().children('ul').toggle() ;
+        $( this ).children('i').toggleClass("fa-angle-down fa-angle-right") ;
+
+        // $( this ).toggleClass("fa-angle-down fa-angle-right") ;
+        // $( this ).parent().parent().children('ul').toggle() ;
         return false;
     });
 
