@@ -2,7 +2,6 @@ jQuery(document).ready(function() {
     // TODO: Temporary fix
 
     jQuery('.menu .dd-item.haschildren > a').on('click', function() {
-        console.log($( this ).children('a'));
         $( this ).parent().children('ul').toggle() ;
         $( this ).children('i').toggleClass("fa-angle-down fa-angle-right") ;
 
