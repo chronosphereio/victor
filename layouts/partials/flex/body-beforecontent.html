@@ -29,21 +29,26 @@
               </script>
               <script type="text/javascript" src="{{"js/search.js" | relURL}}"></script>
             {{- end}}
-
-            <a target="_self" rel="noopener" href="/docs/quickstart/docker"
+            {{ with .Site.Params.gettingStartedLink }}
+            <a target="_self" rel="noopener" href="{{ . }}"
               class="navbar-hugo__cta crunch-button crunch-button__full-background crunch-button__full-background--gradient-color 
               crunch-button__full-background--arrow-right crunch-button__full-background--large text-white ml-auto c-mr-4">
               Getting Started
             </a>
-            {{/*  TODO: Parameterise  */}}
+            {{ end }}
+            {{- with .Site.Menus.socials}}
+
             <div class="navbar-socials order-2 order-lg-3">
-              <a href="https://bit.ly/m3slack" class="navbar-socials__logo-box bg-primary c-mr-2">
-                <img src="../images/slack_logo-light.svg" class="navbar-socials__logo">
+              {{- range sort . "Weight"}}
+
+              <a href="{{.URL}}" class="navbar-socials__logo-box bg-primary c-ml-2">
+                <img src="{{.Name}}" class="navbar-socials__logo">
               </a>
-              <a href="https://github.com/m3db/m3" class="navbar-socials__logo-box bg-primary c-ml-2">
-                <img src="../images/github_logo-light.svg" class="navbar-socials__logo">
-              </a>
+              {{- end}}
+
             </div>
+            {{- end}}
+
           </div>
         </div>
       </div>
