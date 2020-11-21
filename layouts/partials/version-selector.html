@@ -1,0 +1,10 @@
+{{- if .Site.Params.versions}}
+<div class="nav-link versions-dropdown c-px-5 c-py-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <label>{{ $.Site.Params.version_menu }}</label>
+    <select id="select-version" onchange="location = this.value;">
+        {{ range .Site.Params.versions }}
+        <option id="{{ .version }}" value="{{ .url }}">{{ .version }}</option>
+        {{ end }}
+    </select>
+</div>
+{{- end }}

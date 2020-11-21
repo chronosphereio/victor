@@ -25824,6 +25824,9 @@ background-color: #EFF9FC;
     margin: 2rem 0rem;
 } */
 
+.hugo-sidebar .versions-dropdown h4{
+display: inline-block;
+}
 
 /* TODO: Defunct */
 #sidebar ul.topics ul {
