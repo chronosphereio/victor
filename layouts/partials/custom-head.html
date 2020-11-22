@@ -26,14 +26,14 @@
 {{ $assetBusting := not .Site.Params.disableAssetsBusting }}
 <link href="{{"css/theme.css" | relURL}}{{ if $assetBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet">
 
-<meta property="og:title" content="{{ .Title }}"/>
-<meta property="og:site_name" content="{{ .Site.Title }}"/>
+<meta property="og:title" content="{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Params.title }}"/>
+<meta property="og:site_name" content="{{ .Site.Params.title }}"/>
 
 <meta property="og:url" content="{{ .Permalink }}"/>
 
 <meta property="og:type" content="website"/>
-<meta name="twitter:title" content="{{ .Title }}"/>
-<meta name="twitter:site" content="{{ .Params.twitter }}"/>
+<meta name="twitter:title" content="{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Params.title }}"/>
+<meta name="twitter:site" content="{{ .Site.Params.twitter }}"/>
 <meta name="twitter:card" content="summary_large_image"/>
 
 <!-- Image -->
