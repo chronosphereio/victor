@@ -1,0 +1,23 @@
+{{ define "main" }}
+<main>
+    <div class="hugo-content__listing c-mt-10 c-mt-lg-6">
+        {{ range .Pages }}
+        <div class="hugo-content__listing-box c-mt-6 c-mt-lg-3 c-p-6">
+            <h3 class="font-size-30 font-weight-bold text-blue-light">
+                {{.Title}}
+            </h3>
+            <div class="line-height-1-6 c-mt-4 c-opacity-7">
+                {{.Summary}}
+            </div>
+            <a href="{{.Permalink}}"
+                class="hugo-content__listing-readmore font-size-14 font-weight-medium text-secondary d-inline-block c-mt-4">
+                Read more
+
+                <img src="{{"/images/arrow-right-circle.svg" | relURL}}" class="arrow-right-circle c-ml-3"
+                    alt="arrow-right-circle" />
+            </a>
+        </div>
+        {{ end }}
+    </div>
+</main>
+{{ end }}
