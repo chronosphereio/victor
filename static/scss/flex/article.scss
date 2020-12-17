@@ -10,7 +10,8 @@ article {
 
 
 
-article section.page {
+article section.page,
+.hugo-content {
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
@@ -122,7 +123,7 @@ article section.page {
     }
 
     pre {
-    //   background-color: #eee;
+    background-color: #011627;
     //     border-radius: .2rem;
     //     color: #444;
     //     overflow: auto;
@@ -131,7 +132,7 @@ article section.page {
         .copy-to-clipboard {
             float: right;
             position: relative;
-            right: 0px;
+            right: 5px;
         }
     }
 

@@ -374,10 +374,10 @@ article section.page {
     color: #444;
     overflow: auto;
     padding: .5rem; } */
-    article section.page pre .copy-to-clipboard {
+    .hugo-content pre .copy-to-clipboard {
       float: right;
       position: relative;
-      right: 0px; }
+      right: 5px; }
   article section.page pre[class*="language-"] {
     background-color: #333;
     color: #eee;
