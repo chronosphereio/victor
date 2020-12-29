@@ -1,5 +1,5 @@
 jQuery.extend({
-    highlight: function(node, re, nodeName, className) {
+    highlight: function (node, re, nodeName, className) {
         if (node.nodeType === 3) {
             var match = node.data.match(re);
             if (match) {
@@ -22,14 +22,3 @@ jQuery.extend({
         return 0;
     }
 });
-
-// jQuery(document).ready(function() {
-
-//     jQuery('.menu .category-icon').on('click', function() {
-//         console.log("test");
-//         $( this ).toggleClass("fa-angle-down fa-angle-right") ;
-//         console.log($( this ).parent().children('ul'));
-//         $( this ).parent().children('ul').toggle() ;
-//         return false;
-//     });
-// });

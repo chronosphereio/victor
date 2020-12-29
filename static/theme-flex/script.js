@@ -1,20 +1,15 @@
-jQuery(document).ready(function() {
-    // TODO: Temporary fix
+jQuery(document).ready(function () {
 
-    jQuery('.menu .dd-item.haschildren > a').on('click', function() {
-        $( this ).parent().children('ul').toggle() ;
-        $( this ).children('i').toggleClass("fa-angle-down fa-angle-right") ;
+    jQuery('.menu .dd-item.haschildren > a').on('click', function () {
+        $(this).parent().children('ul').toggle();
+        $(this).children('i').toggleClass("fa-angle-down fa-angle-right");
 
-        // $( this ).toggleClass("fa-angle-down fa-angle-right") ;
-        // $( this ).parent().parent().children('ul').toggle() ;
         return false;
     });
 
-
-
     // Images
     // Execute actions on images generated from Markdown pages
-    var images = $("article img").not(".inline");
+    var images = $(".main-content img").not(".inline");
     // Wrap image inside a featherlight (to get a full size view in a popup)
     images.wrap(function () {
         var image = $(this);
@@ -44,7 +39,7 @@ jQuery(document).ready(function() {
             });
             if (typeof c !== "undefined") {
                 var classes = c.split(',');
-                $.each(classes, function(i) {
+                $.each(classes, function (i) {
                     image.addClass(classes[i]);
                 });
             }
@@ -52,31 +47,31 @@ jQuery(document).ready(function() {
     });
 
 
-	// Clipboard
+    // Clipboard
     // Add link button for every
-    // TODO: Restore
-    // var text, clip = new Clipboard('.anchor');
-    // $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function (index, html) {
-    //     var element = $(this);
-    //     var url = document.location.origin + document.location.pathname;
-    //     var link = url + "#" + element[0].id;
-    //     return " <span class='anchor' data-clipboard-text='" + link + "'>" +
-    //         "<i class='fa fa-link fa-lg'></i>" +
-    //         "</span>";
-    // });
+    var text, clip = new ClipboardJS('.anchor');
+    $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function (index, html) {
+        console.log("here");
+        var element = $(this);
+        var url = document.location.origin + document.location.pathname;
+        var link = url + "#" + element[0].id;
+        return " <span class='anchor' data-clipboard-text='" + link + "'>" +
+            "<i class='fa fa-link fa-lg'></i>" +
+            "</span>";
+    });
 
-    // $(".anchor").on('mouseleave', function (e) {
-    //     $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
-    // });
+    $(".anchor").on('mouseleave', function (e) {
+        $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+    });
 
-    // clip.on('success', function (e) {
-    //     e.clearSelection();
-    //     $(e.trigger).attr('aria-label', 'Link copied to clipboard!').addClass('tooltipped tooltipped-s');
-    // });
+    clip.on('success', function (e) {
+        e.clearSelection();
+        $(e.trigger).attr('aria-label', 'Link copied to clipboard!').addClass('tooltipped tooltipped-s');
+    });
 
 
     var ajax;
-    jQuery('[data-search-input]').on('input', function() {
+    jQuery('[data-search-input]').on('input', function () {
         var input = jQuery(this),
             value = input.val(),
             items = jQuery('[data-nav-id]');
@@ -94,15 +89,15 @@ jQuery(document).ready(function() {
 
         if (ajax && ajax.abort) ajax.abort();
 
-        jQuery('[data-search-clear]').on('click', function() {
+        jQuery('[data-search-clear]').on('click', function () {
             jQuery('[data-search-input]').val('').trigger('input');
             sessionStorage.removeItem('search-input');
             $("article").unhighlight({ element: 'mark' })
         });
     });
 
-    $.expr[":"].contains = $.expr.createPseudo(function(arg) {
-        return function( elem ) {
+    $.expr[":"].contains = $.expr.createPseudo(function (arg) {
+        return function (elem) {
             return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
         };
     });
@@ -118,30 +113,30 @@ jQuery(document).ready(function() {
     // clipboard
     // TODO: Bring back
     var clipInit = false;
-    $('pre code').each(function() {
+    $('pre code').each(function () {
         var code = $(this),
             text = code.text();
 
         if (text.length > 5) {
             if (!clipInit) {
                 var text, clip = new ClipboardJS('.copy-to-clipboard', {
-                    text: function(trigger) {
+                    text: function (trigger) {
                         text = $(trigger).next('code').text();
                         return text.replace(/^\$\s/gm, '');
                     }
                 });
 
                 var inPre;
-                clip.on('success', function(e) {
+                clip.on('success', function (e) {
                     e.clearSelection();
                     inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
                     $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                 });
 
-                clip.on('error', function(e) {
+                clip.on('error', function (e) {
                     inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
                     $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
-                    $(document).one('copy', function(){
+                    $(document).one('copy', function () {
                         $(e.trigger).attr('aria-label', 'Copied to clipboard!').addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
                     });
                 });
@@ -150,42 +145,23 @@ jQuery(document).ready(function() {
             }
 
             code.before('<span class="copy-to-clipboard" title="Copy to clipboard"><span class="fa fa-clipboard" aria-hidden="true"></span></span>');
-            $('.copy-to-clipboard').on('mouseleave', function() {
+            $('.copy-to-clipboard').on('mouseleave', function () {
                 $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
             });
         }
     });
 
-    // allow keyboard control for prev/next links
-    // jQuery(function() {
-    //     jQuery('.nav-prev').click(function(){
-    //         location.href = jQuery(this).attr('href');
-    //     });
-    //     jQuery('.nav-next').click(function() {
-    //         location.href = jQuery(this).attr('href');
-    //     });
-    // });
-    // jQuery(document).keydown(function(e) {
-    //   // prev links - left arrow key
-    //   if(e.which == '37') {
-    //     jQuery('.nav.nav-prev').click();
-    //   }
-    //   // next links - right arrow key
-    //   if(e.which == '39') {
-    //     jQuery('.nav.nav-next').click();
-    //   }
-    // });
-
     $('article a:not(:has(img)):not(.btn)').addClass('highlight');
 });
 
-$(function() {
+$(function () {
     $('a[rel="lightbox"]').featherlight({
         root: 'article'
     });
 });
+
 jQuery.extend({
-    highlight: function(node, re, nodeName, className) {
+    highlight: function (node, re, nodeName, className) {
         if (node.nodeType === 3) {
             var match = node.data.match(re);
             if (match && !$(node.parentNode).hasClass("mermaid")) {
@@ -209,21 +185,21 @@ jQuery.extend({
     }
 });
 
-jQuery.fn.unhighlight = function(options) {
+jQuery.fn.unhighlight = function (options) {
     var settings = {
         className: 'highlight',
         element: 'span'
     };
     jQuery.extend(settings, options);
 
-    return this.find(settings.element + "." + settings.className).each(function() {
+    return this.find(settings.element + "." + settings.className).each(function () {
         var parent = this.parentNode;
         parent.replaceChild(this.firstChild, this);
         parent.normalize();
     }).end();
 };
 
-jQuery.fn.highlight = function(words, options) {
+jQuery.fn.highlight = function (words, options) {
     var settings = {
         className: 'highlight',
         element: 'span',
@@ -237,10 +213,10 @@ jQuery.fn.highlight = function(words, options) {
     if (words.constructor === String) {
         words = [words];
     }
-    words = jQuery.grep(words, function(word, i) {
+    words = jQuery.grep(words, function (word, i) {
         return word != '';
     });
-    words = jQuery.map(words, function(word, i) {
+    words = jQuery.map(words, function (word, i) {
         return word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     });
     if (words.length == 0) { return this; }
@@ -253,11 +229,10 @@ jQuery.fn.highlight = function(words, options) {
     }
     var re = new RegExp(pattern, flag);
 
-    return this.each(function() {
+    return this.each(function () {
         jQuery.highlight(this, re, settings.element, settings.className);
     });
 };
-
 
 // Get Parameters from some url
 var getUrlParameter = function getUrlParameter(sPageURL) {
@@ -278,7 +253,7 @@ var getUrlParameter = function getUrlParameter(sPageURL) {
 };
 
 // Burger icon click toggle header menu on small devices
-$('.burger').on('click', function(e){
-    $('#shortcuts').toggleClass("responsive") ;
+$('.burger').on('click', function (e) {
+    $('#shortcuts').toggleClass("responsive");
     e.preventDefault();
 });

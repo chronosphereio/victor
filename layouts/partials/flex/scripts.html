@@ -1,7 +1,6 @@
 
 <script src="{{"js/clipboard.min.js" | relURL}}"></script>
 
-<link href="{{"css/featherlight.min.css" | relURL}}" rel="stylesheet">
 <script src="{{"js/featherlight.min.js" | relURL}}"></script>
 <!-- Custom JS TBD -->
 <script src="{{"js/bootstrap-4.3.1.min.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
@@ -10,8 +9,6 @@
 <script>hljs.initHighlightingOnLoad();</script>
 
 <script src="{{"js/modernizr.custom.71422.js" | relURL}}"></script>
-{{/*  <script src="{{"js/docdock.js" | relURL}}"></script>  */}}
 <script src="{{(printf "theme-%s/script.js" (.Site.Params.themeStyle| default "flex")) | relURL}}"></script>
-
 
 <script src="{{"js/theme.js" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}"></script>
