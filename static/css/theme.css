@@ -25181,15 +25181,19 @@ div.notices.tip p:first-child:after {
     border-radius: .625rem
 }
 
-/* TODO: white-space still seems brittle */
 .hljs {
     display: block;
     overflow-x: auto;
     background: #011627;
     color: #d6deeb;
     padding: 2rem;
-    white-space: break-spaces;
+    white-space: pre-wrap;
 }
+
+.language-plaintext {
+    white-space: inherit;
+}
+
 /* TODO: Should these be separate? */
 .hljs-keyword {
     color: #c792ea;
