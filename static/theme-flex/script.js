@@ -1,5 +1,84 @@
-jQuery(document).ready(function () {
+// version selector
+// TODO: Dynamically load based on feature enabled
+var currentVersion = getCurrentVersion(location.pathname);
+document
+    .getElementsByClassName("select-version")[0]
+    .addEventListener("change", function (e) {
+        // targetVersion: '', 'master', 'v0.7.7', 'v0.7.6', etc.
+        var targetVersion = e.target.value;
 
+        if (currentVersion !== targetVersion) {
+            var basePath = getPathBeforeVersionName(location, currentVersion);
+            // Getting everything after targetVersion and concatenating it with the hash part.
+            var currentPath = getPathAfterVersionName(location, currentVersion);
+
+            var targetPath;
+            if (targetVersion === "") {
+                targetPath = basePath + currentPath;
+            } else {
+                targetPath = targetVersion + "/" + currentPath;
+            }
+            location.assign(targetPath);
+        }
+    });
+
+function getCurrentVersion(pathname) {
+    let candidate;
+
+    if (location.pathname.startsWith("/docs")) {
+        console.log("yea");
+        candidate = pathname.split("/")[1];
+    } else {
+        candidate = "";
+    }
+
+    return candidate;
+}
+
+// getPathBeforeVersionName gets the current URL path before the version prefix
+function getPathBeforeVersionName(location, versionName) {
+    if (location.pathname.startsWith("/docs")) {
+        return "/docs/";
+    }
+    return "/";
+}
+
+// getPathAfterVersionName gets the current URL path after the version prefix
+function getPathAfterVersionName(location, versionName) {
+    let path;
+    if (location.pathname.startsWith("/docs")) {
+        if (versionName === "") {
+            path = location.pathname
+                .split("/")
+                .slice(2)
+                .join("/");
+        } else {
+            path = location.pathname
+                .split("/")
+                .slice(3)
+                .join("/");
+        }
+        return path + location.hash;
+    }
+
+    if (versionName === "") {
+        path = location.pathname
+            .split("/")
+            .slice(1)
+            .join("/");
+    } else {
+        path = location.pathname
+            .split("/")
+            .slice(2)
+            .join("/");
+    }
+
+    return path + location.hash;
+}
+
+
+
+jQuery(document).ready(function () {
     jQuery('.menu .dd-item.haschildren > a').on('click', function () {
         $(this).parent().children('ul').toggle();
         $(this).children('i').toggleClass("fa-angle-down fa-angle-right");
