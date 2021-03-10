@@ -11,13 +11,13 @@ document
             var basePath = getPathBeforeVersionName(location, currentVersion);
             // Getting everything after targetVersion and concatenating it with the hash part.
             var currentPath = getPathAfterVersionName(location, currentVersion);
-
             var targetPath;
             if (targetVersion === "") {
                 targetPath = basePath + currentPath;
             } else {
                 targetPath = targetVersion + "/" + currentPath;
             }
+            // console.log(targetPath);
             location.assign(targetPath);
         }
     });
@@ -26,7 +26,6 @@ function getCurrentVersion(pathname) {
     let candidate;
 
     if (location.pathname.startsWith("/docs")) {
-        console.log("yea");
         candidate = pathname.split("/")[1];
     } else {
         candidate = "";
@@ -55,7 +54,7 @@ function getPathAfterVersionName(location, versionName) {
         } else {
             path = location.pathname
                 .split("/")
-                .slice(3)
+                .slice(2)
                 .join("/");
         }
         return path + location.hash;
