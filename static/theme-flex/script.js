@@ -1,36 +1,39 @@
 // version selector
 // TODO: Dynamically load based on feature enabled
 var currentVersion = getCurrentVersion(location.pathname);
+console.log(currentVersion);
+
 document
     .getElementsByClassName("select-version")[0]
     .addEventListener("change", function (e) {
+        console.log(e);
         // targetVersion: '', 'master', 'v0.7.7', 'v0.7.6', etc.
         var targetVersion = e.target.value;
+        // console.log(targetVersion); 
 
         if (currentVersion !== targetVersion) {
             var basePath = getPathBeforeVersionName(location, currentVersion);
             // Getting everything after targetVersion and concatenating it with the hash part.
             var currentPath = getPathAfterVersionName(location, currentVersion);
             var targetPath;
-            if (targetVersion === "") {
+            if (targetVersion === "/docs") {
                 targetPath = basePath + currentPath;
             } else {
                 targetPath = targetVersion + "/" + currentPath;
             }
-            // console.log(targetPath);
+            console.log(targetPath);
             location.assign(targetPath);
         }
     });
 
 function getCurrentVersion(pathname) {
     let candidate;
-
-    if (location.pathname.startsWith("/docs")) {
+    if (location.pathname.startsWith("/v")) {
         candidate = pathname.split("/")[1];
+        document.getElementsByClassName("select-version")[0].value=`/${candidate}/docs`;
     } else {
         candidate = "";
     }
-
     return candidate;
 }
 
