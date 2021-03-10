@@ -1,10 +1,11 @@
 // version selector
 // TODO: Dynamically load based on feature enabled
 var currentVersion = getCurrentVersion(location.pathname);
+
 document
     .getElementsByClassName("select-version")[0]
     .addEventListener("change", function (e) {
-        // targetVersion: '', 'master', 'v0.7.7', 'v0.7.6', etc.
+        console.log(e);
         var targetVersion = e.target.value;
 
         if (currentVersion !== targetVersion) {
@@ -12,25 +13,24 @@ document
             // Getting everything after targetVersion and concatenating it with the hash part.
             var currentPath = getPathAfterVersionName(location, currentVersion);
             var targetPath;
-            if (targetVersion === "") {
+            if (targetVersion === "/docs") {
                 targetPath = basePath + currentPath;
             } else {
                 targetPath = targetVersion + "/" + currentPath;
             }
-            // console.log(targetPath);
+            console.log(targetPath);
             location.assign(targetPath);
         }
     });
 
 function getCurrentVersion(pathname) {
     let candidate;
-
-    if (location.pathname.startsWith("/docs")) {
+    if (location.pathname.startsWith("/v")) {
         candidate = pathname.split("/")[1];
+        document.getElementsByClassName("select-version")[0].value=`/${candidate}/docs`;
     } else {
         candidate = "";
     }
-
     return candidate;
 }
 
@@ -129,7 +129,6 @@ jQuery(document).ready(function () {
     // Add link button for every
     var text, clip = new ClipboardJS('.anchor');
     $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function (index, html) {
-        console.log("here");
         var element = $(this);
         var url = document.location.origin + document.location.pathname;
         var link = url + "#" + element[0].id;
