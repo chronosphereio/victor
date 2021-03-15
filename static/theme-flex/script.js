@@ -5,7 +5,6 @@ var currentVersion = getCurrentVersion(location.pathname);
 document
     .getElementsByClassName("select-version")[0]
     .addEventListener("change", function (e) {
-        console.log(e);
         var targetVersion = e.target.value;
 
         if (currentVersion !== targetVersion) {
@@ -18,7 +17,6 @@ document
             } else {
                 targetPath = targetVersion + "/" + currentPath;
             }
-            console.log(targetPath);
             location.assign(targetPath);
         }
     });
@@ -78,6 +76,7 @@ function getPathAfterVersionName(location, versionName) {
 
 
 jQuery(document).ready(function () {
+
     jQuery('.menu .dd-item.haschildren > a').on('click', function () {
         $(this).parent().children('ul').toggle();
         $(this).children('i').toggleClass("fa-angle-down fa-angle-right");
