@@ -2372,7 +2372,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
     margin: 0;
-    font-family: "Cabin",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";    font-size: 1rem;
+    font-family: "Cabin", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #19243E !important;
@@ -9793,6 +9794,7 @@ b, strong {
 em {
     font-style: italic
 }
+
 /* 
 .main-content::before {
     content: 'XS (<575px)';
@@ -9980,6 +9982,7 @@ html {
 }
 
 /* TODO: remove extraneous class? */
+
 .c-mt-4, p, .highlight {
     margin-top: .75rem
 }
@@ -10517,6 +10520,7 @@ html {
 }
 
 /* TODO: remove */
+
 .c-p-6, .tab-content {
     padding: 1.5rem
 }
@@ -10911,16 +10915,18 @@ html {
     padding-left: .75rem;
     padding-right: .75rem
 }
+
 .c-py-2 {
     padding-top: .25rem;
     padding-bottom: .25rem;
 }
+
 .c-px-only-4 {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important
 }
 
-.c-px-5, .hugo-sidebar .menu > li > a {
+.c-px-5, .hugo-sidebar .menu>li>a {
     padding-left: 1rem;
     padding-right: 1rem
 }
@@ -10941,8 +10947,8 @@ html {
 }
 
 .c-px-7 {
-    padding-left: 2rem;
-    padding-right: 2rem
+    padding-left: 1rem;
+    padding-right: 1rem
 }
 
 .c-px-only-7 {
@@ -10990,7 +10996,7 @@ html {
     padding-bottom: .25rem !important
 }
 
-.c-px-5, .hugo-sidebar .menu > li > a > a {
+.c-px-5, .hugo-sidebar .menu>li>a>a {
     padding-top: .25rem;
     padding-bottom: .25rem
 }
@@ -11306,7 +11312,7 @@ html {
         padding: 1.2rem
     }
     /* TODO: remove */
-.c-p-6, .tab-content {
+    .c-p-6, .tab-content {
         padding: 1.8rem
     }
     .c-p-7 {
@@ -11441,7 +11447,7 @@ html {
         padding-left: .9rem;
         padding-right: .9rem
     }
-    .c-px-5, .hugo-sidebar .menu > li > a {
+    .c-px-5, .hugo-sidebar .menu>li>a {
         padding-left: 1.2rem;
         padding-right: 1.2rem
     }
@@ -11450,8 +11456,8 @@ html {
         padding-right: 1.8rem
     }
     .c-px-7 {
-        padding-left: 2.4rem;
-        padding-right: 2.4rem
+        padding-left: 1.2rem;
+        padding-right: 1.2rem
     }
     .c-px-8 {
         padding-left: 3rem;
@@ -11465,7 +11471,7 @@ html {
         padding-left: 4.8rem;
         padding-right: 4.8rem
     }
-    .c-px-5, .hugo-sidebar .menu > li > a > a {
+    .c-px-5, .hugo-sidebar .menu>li>a>a {
         padding-top: .3rem;
         padding-bottom: .3rem
     }
@@ -12649,7 +12655,7 @@ html {
         padding: 1.4rem
     }
     /* TODO: remove */
-.c-p-6, .tab-content {
+    .c-p-6, .tab-content {
         padding: 2.1rem
     }
     .c-p-7 {
@@ -12784,7 +12790,7 @@ html {
         padding-left: 1.05rem;
         padding-right: 1.05rem
     }
-    .c-px-5, .hugo-sidebar .menu > li > a {
+    .c-px-5, .hugo-sidebar .menu>li>a {
         padding-left: 1.4rem;
         padding-right: 1.4rem
     }
@@ -12793,8 +12799,8 @@ html {
         padding-right: 2.1rem
     }
     .c-px-7 {
-        padding-left: 2.8rem;
-        padding-right: 2.8rem
+        padding-left: 1.4rem;
+        padding-right: 1.4rem
     }
     .c-px-8 {
         padding-left: 3.5rem;
@@ -12808,7 +12814,7 @@ html {
         padding-left: 5.6rem;
         padding-right: 5.6rem
     }
-    .c-px-5, .hugo-sidebar .menu > li > a > a {
+    .c-px-5, .hugo-sidebar .menu>li>a>a {
         padding-top: .35rem;
         padding-bottom: .35rem
     }
@@ -14402,7 +14408,7 @@ html {
         padding: 1.6rem
     }
     /* TODO: remove */
-.c-p-6, .tab-content {
+    .c-p-6, .tab-content {
         padding: 2.4rem
     }
     .c-p-7 {
@@ -14537,7 +14543,7 @@ html {
         padding-left: 1.2rem;
         padding-right: 1.2rem
     }
-    .c-px-5, .hugo-sidebar .menu > li > a {
+    .c-px-5, .hugo-sidebar .menu>li>a {
         padding-left: 1.6rem;
         padding-right: 1.6rem
     }
@@ -14546,8 +14552,8 @@ html {
         padding-right: 2.4rem
     }
     .c-px-7 {
-        padding-left: 3.2rem;
-        padding-right: 3.2rem
+        padding-left: 1.6rem;
+        padding-right: 1.6rem
     }
     .c-px-8 {
         padding-left: 4rem;
@@ -14561,7 +14567,7 @@ html {
         padding-left: 6.4rem;
         padding-right: 6.4rem
     }
-    .c-px-5, .hugo-sidebar .menu > li > a > a {
+    .c-px-5, .hugo-sidebar .menu>li>a>a {
         padding-top: .4rem;
         padding-bottom: .4rem
     }
@@ -16572,8 +16578,8 @@ html {
     .c-p-5 {
         padding: 1.8rem
     }
-/* TODO: remove */
-.c-p-6, .tab-content {
+    /* TODO: remove */
+    .c-p-6, .tab-content {
         padding: 2.7rem
     }
     .c-p-7 {
@@ -16708,7 +16714,7 @@ html {
         padding-left: 1.35rem;
         padding-right: 1.35rem
     }
-    .c-px-5, .hugo-sidebar .menu > li > a {
+    .c-px-5, .hugo-sidebar .menu>li>a {
         padding-left: 1.8rem;
         padding-right: 1.8rem
     }
@@ -16717,8 +16723,8 @@ html {
         padding-right: 2.7rem
     }
     .c-px-7 {
-        padding-left: 3.6rem;
-        padding-right: 3.6rem
+        padding-left: 1.8rem;
+        padding-right: 1.8rem
     }
     .c-px-8 {
         padding-left: 4.5rem;
@@ -16732,7 +16738,7 @@ html {
         padding-left: 7.2rem;
         padding-right: 7.2rem
     }
-    .c-px-5, .hugo-sidebar .menu > li > a > a {
+    .c-px-5, .hugo-sidebar .menu>li>a>a {
         padding-top: .45rem;
         padding-bottom: .45rem
     }
@@ -19154,7 +19160,7 @@ html {
         padding: 2rem
     }
     /* TODO: remove */
-.c-p-6, .tab-content {
+    .c-p-6, .tab-content {
         padding: 3rem
     }
     .c-p-7 {
@@ -19289,7 +19295,7 @@ html {
         padding-left: 1.5rem;
         padding-right: 1.5rem
     }
-    .c-px-5, .hugo-sidebar .menu > li > a {
+    .c-px-5, .hugo-sidebar .menu>li>a {
         padding-left: 2rem;
         padding-right: 2rem
     }
@@ -19298,8 +19304,8 @@ html {
         padding-right: 3rem
     }
     .c-px-7 {
-        padding-left: 4rem;
-        padding-right: 4rem
+        padding-left: 2rem;
+        padding-right: 2rem
     }
     .c-px-8 {
         padding-left: 5rem;
@@ -19313,7 +19319,7 @@ html {
         padding-left: 8rem;
         padding-right: 8rem
     }
-    .c-px-5, .hugo-sidebar .menu > li > a > a {
+    .c-px-5, .hugo-sidebar .menu>li>a>a {
         padding-top: .5rem;
         padding-bottom: .5rem
     }
@@ -24947,70 +24953,71 @@ iframe.wait-autoplay {
     background-color: #F7FCFE;
 }
 
-.hugo-sidebar .menu > label {
+.hugo-sidebar .menu>label {
     display: block;
     font-family: 'Novacento Sans Wide', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif;
     font-weight: 100;
     font-size: 130%;
     margin-left: 1rem;
 }
+
 .hugo-sidebar .menu ul {
     display: none;
     background-color: #F7FCFE;
 }
-.hugo-sidebar .menu ul > li> ul {
-    padding-left: revert;
-    padding-right: revert;
-}
 
-.hugo-sidebar .menu .dd-item.alwaysopen > ul {
+.hugo-sidebar .menu .dd-item.alwaysopen>ul {
     display: block;
 }
-.hugo-sidebar .menu .dd-item.parent > ul {
+
+.hugo-sidebar .menu .dd-item.parent>ul {
     display: block;
     list-style: none;
 }
-.hugo-sidebar .menu .dd-item.active > ul {
+
+.hugo-sidebar .menu .dd-item.active>ul {
     display: block;
 }
-.hugo-sidebar .menu .dd-item.active > div {
+
+.hugo-sidebar .menu .dd-item.active>div {
     background-color: #eee;
 }
 
 .hugo-sidebar .menu li {
     list-style: none;
-
 }
-.hugo-sidebar .menu > li {
+
+.hugo-sidebar .menu>li {
     background-color: #EFF9FC;
     border: 0;
     border-radius: 0;
     margin-bottom: -1px;
-
 }
 
-.hugo-sidebar .menu > li * {
+.hugo-sidebar .menu>li * {
     line-height: inherit;
 }
-.hugo-sidebar .menu > li i.read-icon {
+
+.hugo-sidebar .menu>li i.read-icon {
     display: none;
 }
-.hugo-sidebar .menu > li i.category-icon {
+
+.hugo-sidebar .menu>li i.category-icon {
     right: 0.55rem;
     position: absolute;
     width: 20px;
     cursor: pointer;
     font-size: initial;
 }
-.hugo-sidebar .menu > li > a {
+
+.hugo-sidebar .menu>li>a {
     text-decoration: none;
     font-size: 1.28rem;
     font-weight: bold;
-
 }
 
-.hugo-sidebar .versions-dropdown h4{
-display: inline-block;
+.hugo-sidebar .versions-dropdown h4 {
+    display: inline-block;
 }
 
 .hugo-sidebar__body-link:hover, .hugo-sidebar__socials-link:hover {
@@ -25060,6 +25067,7 @@ display: inline-block;
 }
 
 /* TODO: Reduntant? */
+
 .hugo-content__head-desc {
     max-width: 45rem
 }
@@ -25073,6 +25081,7 @@ div.notices {
     position: relative;
     border: 0;
 }
+
 div.notices p {
     padding: 1rem 1.5rem;
     display: block;
@@ -25082,50 +25091,59 @@ div.notices p {
     color: #666;
     border-radius: .625rem;
 }
+
 div.notices p:first-child:before {
     position: absolute;
     top: 2px;
     color: #fff;
     font-family: "FontAwesome";
     font-weight: 900;
-    content:"\f06a";
+    content: "\f06a";
     left: 10px;
 }
+
 div.notices p:first-child:after {
     position: absolute;
     top: 2px;
     color: #fff;
     left: 2rem;
 }
+
 div.notices.info p {
     border-top: 30px solid #F0B37E;
     background: #FFF2DB;
 }
+
 div.notices.info p:first-child:after {
     content: 'Info';
 }
+
 div.notices.warning p {
     border-top: 30px solid #E36E2A;
     background: #F3DACB;
 }
+
 div.notices.warning p:first-child:after {
     content: 'Warning';
 }
+
 div.notices.note p {
     border-top: 30px solid #6AB0DE;
     background: #E7F2FA;
 }
+
 div.notices.note p:first-child:after {
     content: 'Note';
 }
+
 div.notices.tip p {
     border-top: 30px solid #7DB97C;
     background: #DFEEDF;
 }
+
 div.notices.tip p:first-child:after {
     content: 'Tip';
 }
-
 
 .hugo-content__listing {
     font-family: "Cabin", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
@@ -25195,6 +25213,7 @@ div.notices.tip p:first-child:after {
 }
 
 /* TODO: Should these be separate? */
+
 .hljs-keyword {
     color: #c792ea;
     font-style: italic
