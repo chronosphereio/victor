@@ -5,7 +5,7 @@
     <h4>{{T "Help-Block-Heading"}}</h4>
 <ul>
     {{ if .Site.Params.editURL }}
-      <li><a href="{{ .Site.Params.editURL }}{{ replace .File.Dir " docs/" "" }}{{ .File.LogicalName }}" target="blank"><i
+      <li><a href="{{ .Site.Params.editURL }}{{ replace .File.Dir "docs/" "" }}{{ .File.LogicalName }}" target="blank"><i
           class="fa fa-github"></i>
         {{T "Edit-this-page"}}</a></li>
     {{end}}
