@@ -1,6 +1,7 @@
 // version selector
 // TODO: Dynamically load based on feature enabled
 var currentVersion = getCurrentVersion(location.pathname);
+document.getElementById("select-version").selectedIndex = 1;
 
 document
     .getElementsByClassName("select-version")[0]
