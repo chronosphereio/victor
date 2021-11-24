@@ -1,80 +1,34 @@
 // version selector
 // TODO: Dynamically load based on feature enabled
-var currentVersion = getCurrentVersion(location.pathname);
-document.getElementById("select-version").selectedIndex = 1;
+var currentVersion = getCurrentVersion(window.location.pathname);
+document.getElementsByClassName("select-version")[0].options[currentVersion].selected = true;
+
+function getCurrentVersion(pathname) {
+    var pathArray = pathname.split('/');
+    if (pathArray[2].startsWith("v")) {
+        return pathArray[2];
+    } else {
+        return "latest";
+    }
+}
 
 document
     .getElementsByClassName("select-version")[0]
     .addEventListener("change", function (e) {
+
+        var currentVersion = getCurrentVersion(window.location.pathname);
         var targetVersion = e.target.value;
 
-        if (currentVersion !== targetVersion) {
-            var basePath = getPathBeforeVersionName(location, currentVersion);
-            // Getting everything after targetVersion and concatenating it with the hash part.
-            var currentPath = getPathAfterVersionName(location, currentVersion);
-            var targetPath;
-            if (targetVersion === "/docs") {
-                targetPath = basePath + currentPath;
-            } else {
-                targetPath = targetVersion + "/" + currentPath;
-            }
-            location.assign(targetPath);
-        }
-    });
-
-function getCurrentVersion(pathname) {
-    let candidate;
-    if (location.pathname.startsWith("/v")) {
-        candidate = pathname.split("/")[1];
-        document.getElementsByClassName("select-version")[0].value=`/${candidate}/docs`;
-    } else {
-        candidate = "";
-    }
-    return candidate;
-}
-
-// getPathBeforeVersionName gets the current URL path before the version prefix
-function getPathBeforeVersionName(location, versionName) {
-    if (location.pathname.startsWith("/docs")) {
-        return "/docs/";
-    }
-    return "/";
-}
-
-// getPathAfterVersionName gets the current URL path after the version prefix
-function getPathAfterVersionName(location, versionName) {
-    let path;
-    if (location.pathname.startsWith("/docs")) {
-        if (versionName === "") {
-            path = location.pathname
-                .split("/")
-                .slice(2)
-                .join("/");
+        var currentPath = window.location.pathname;
+        var pathArray = currentPath.split('/');
+        if (currentVersion === "latest") {
+            pathArray.splice(0, 2);
         } else {
-            path = location.pathname
-                .split("/")
-                .slice(2)
-                .join("/");
+            pathArray.splice(0, 3);
         }
-        return path + location.hash;
-    }
-
-    if (versionName === "") {
-        path = location.pathname
-            .split("/")
-            .slice(1)
-            .join("/");
-    } else {
-        path = location.pathname
-            .split("/")
-            .slice(2)
-            .join("/");
-    }
-
-    return path + location.hash;
-}
-
-
+        let newPath = targetVersion + "/" + pathArray.join("/");
+        location.assign(newPath);
+    });
 
 jQuery(document).ready(function () {
 
