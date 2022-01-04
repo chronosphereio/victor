@@ -1,63 +1,95 @@
 {{- $currentNode := . }}
 {{- $showvisitedlinks := .Site.Params.showVisitedLinks -}}
+{{- .Scratch.Set "versionPrefix" "" -}}
+{{- .Scratch.Set "parentDoc" "" -}}
+
+{{ $parts := split .File.Dir "/" }}
+{{- if hasPrefix (index $parts 1) "v" -}}
+{{ .Scratch.Set "versionPrefix" (index $parts 1)}}
+{{ .Scratch.Set "parentDoc" (index $parts 2)}}
+{{- end -}}
 
 {{- if eq .Site.Params.ordersectionsby "title"}}
-  {{- range .Site.Home.Sections.ByTitle}}
-  {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
+  {{- range .CurrentSection.Sections.ByTitle}}
+  {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "versionprefix" ($.Scratch.Get "versionPrefix") "parentdoc" ($.Scratch.Get "parentDoc")}}
   {{- end}}
 {{- else}}
+
   {{- range .Site.Home.Sections.ByWeight}}
-  {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks}}
+  {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "versionprefix" ($.Scratch.Get "versionPrefix") "parentdoc" ($.Scratch.Get "parentDoc")}}
   {{- end}}
 {{- end}}
-
 <!-- templates -->
 {{- define "section-tree-nav" }}
 {{- $showvisitedlinks := .showvisitedlinks }}
 {{- $currentNode := .currentnode }}
+{{- $versionPrefix := .versionprefix }}
+{{- $parentDoc := .parentdoc }}
+
  {{- with .sect}}
   {{- if and .IsSection (or (not .Params.hidden) $.showhidden)}}
-    {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
+    {{- $numberOfPages := (len .Pages) }}
+    {{- $numberOfSections := (len .Sections) }}
     {{- safeHTML .Params.head}}
-    <li data-nav-id="{{.Permalink}}" class="dd-item
+
+  {{ $parts := split .Permalink "/" }}
+  {{ .Scratch.Set "parentPath" (index $parts 2)}}
+  
+    <li data-nav-id="{{ .Scratch.Get "menuURL" }}" class="c-py-2 dd-item
         {{- if .IsAncestor $currentNode}} parent{{end}}
-        {{- if eq .Permalink $currentNode.Permalink}} active{{end}}
+        {{- if eq $parentDoc (.Scratch.Get "parentPath")}} parent{{end -}}
+        {{- if eq (.Scratch.Get "menuURL") (strings.TrimRight "/" $currentNode.Permalink) 
+      }} active{{end -}}
         {{- if .Params.alwaysopen}} alwaysopen{{end -}}
         {{- if ne $numberOfPages 0 }} haschildren{{end}}
+        {{- if gt $numberOfSections 0 }} topsection{{end}}
         ">
-      <div class="card-header bg-blue-medium-light c-px-5 c-py-2">
-      <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a>
-        
+        <!-- collapsed font-size-22 font-weight-bold d-inline-block w-100 position-relative -->
+        {{ $parts := split .Permalink "/" }}
+        {{- .Scratch.Set "menuURL" "" -}}
+
+{{- if $versionPrefix -}}
+
+{{ $URL := delimit (slice (index $parts 1) $versionPrefix (index $parts 2) (index $parts 3) (index $parts 4)) "/"}}
+{{- .Scratch.Set "menuURL" (print "/" (strings.TrimRight "/" $URL)) -}}
+{{- else -}}
+{{- .Scratch.Set "menuURL" .RelPermalink -}}
+{{- end -}}
+      <a href="{{ .Scratch.Get "menuURL" }}" class="font-size-15 ">
+        {{safeHTML .Params.Pre}}{{or .Params.menuTitle .LinkTitle .Title}}{{safeHTML .Params.Post}}
         {{- if ne $numberOfPages 0 }}
-          {{- if or (.IsAncestor $currentNode) (.Params.alwaysopen) }}
-            <i class="fa fa-angle-down fa-lg category-icon"></i>
-          {{- else -}}
-            <i class="fa fa-angle-right fa-lg category-icon"></i>
-          {{- end}}
+        {{- if or (.IsAncestor $currentNode) (.Params.alwaysopen) }}
+          <i class="fa fa-angle-down fa-lg category-icon"></i>
+        {{- else -}}
+          <i class="fa fa-angle-right fa-lg category-icon"></i>
         {{- end}}
+      {{- end}}
+      </a>
+
 
         {{- if $showvisitedlinks}}<i class="fa fa-circle-thin read-icon"></i>{{end}}
-      </div>
+
       {{- if ne $numberOfPages 0 }}
-        <ul>
+        <ul class="card-body c-px-7 c-pt-2 c-pb-5
+        ">
           {{- .Scratch.Set "pages" .Pages }}
           {{- if .Sections}}
           {{- .Scratch.Set "pages" (.Pages | union .Sections) }}
           {{- end}}
           {{- $pages := (.Scratch.Get "pages") }}
-
         {{- if eq .Site.Params.ordersectionsby "title"}}
           {{- range $pages.ByTitle }}
             {{- if and .Params.hidden (not $.showhidden) }}
             {{- else}}
-            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "versionprefix" $versionPrefix "parentdoc" $parentDoc}}
             {{- end}}
           {{- end}}
         {{- else}}
           {{- range $pages.ByWeight }}
             {{- if and .Params.hidden (not $.showhidden) }}
             {{- else}}
-            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+
+            {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks "versionprefix" $versionPrefix "parentdoc" $parentDoc}}
             {{- end}}
           {{- end}}
         {{- end}}
@@ -66,15 +98,22 @@
     </li>
   {{- else}}
     {{- if not .Params.Hidden }}
-      <li data-nav-id="{{.Permalink}}" class="dd-item
-     {{- if eq .Permalink $currentNode.Permalink}} active{{end -}}
-      ">
-        <div class="card-header bg-blue-medium-light c-px-5 c-py-2">
-          <a href="{{ .RelPermalink}}">
+
+    {{ $parts := split .Permalink "/" }}
+    {{- .Scratch.Set "subMenuURL" "" -}}
+
+{{- if $versionPrefix -}}
+{{ $URL := delimit (slice (index $parts 1) $versionPrefix (index $parts 2) (index $parts 3) (index $parts 4)) "/"}}
+{{- .Scratch.Set "subMenuURL" (print "/" (strings.TrimRight "/" $URL)) -}}
+{{- else -}}
+{{- .Scratch.Set "subMenuURL" .RelPermalink -}}
+{{- end -}}
+      <li data-nav-id="{{ .Scratch.Get "subMenuURL" }}" class="hugo-sidebar__body-link c-mt-3 dd-item {{- if eq (.Scratch.Get "subMenuURL") (strings.TrimRight "/" $currentNode.Permalink) 
+    }} active{{end -}}">
+          <a href="{{ .Scratch.Get "subMenuURL" }}" class="font-size-15">
             {{safeHTML .Params.Pre}}{{.LinkTitle}}{{safeHTML .Params.Post}}
           </a>
           {{- if $showvisitedlinks}}<i class="fa fa-circle-thin read-icon"></i>{{end}}
-        </div>
     </li>
      {{- end}}
   {{- end}}
